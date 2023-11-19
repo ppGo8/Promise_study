@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button class="btn" style="margin-left: 70px;">点击抽奖</button>
+  </div>
+  <script>
+    // 生成随机数
+    function rand(m, n) {
+      return Math.ceil(Math.random() * (n - m + 1)) + m - 1;
+    }
+    // 需求: 点击按钮2s后显示是否中奖
+    const btn = document.querySelector('.btn');
+    // 1.使用回调函数实现
+    // btn.addEventListener('click', ()=> {
+    //   setTimeout(() => {
+    //     const num = rand(1, 100);
+    //     if (num <= 30) {
+    //       alert(`中奖了!!!${num}`);
+    //     } else {
+    //       alert(`没中奖${num}`);
+    //     }
+    //   }, 500);
+    // });
+
+    // 2.使用Promise形式实现
+    // 成功的时候调用resolve函数
+    // 失败的时候调用reject函数
+    btn.addEventListener('click', ()=> {
+      // promise可以包裹一个异步操作
+      const p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const num = rand(1, 100);
+          if (num <= 30) {
+            resolve(num); // 将promise状态设置为成功
+          } else {
+            reject(num); // 将promise状态设置为失败
+          }
+        }, 100);
+      });
+      // 那如何获得成功或失败的值呢？
+      p.then((value)=> {
+        alert('中奖了！！！' + value);
+      },(reason) => {
+        alert('没中奖' + reason);
+      });
+    }) 
+
+    /**
+     * 总结：发现promise和回调函数的方式的最大区别：
+     * primsie内的操作：1.获取数据 2.判断成功或失败 
+     * 在then中进行除获取数据之外的业务逻辑操作
+     * 回调函数：在回调函数进行 1.获取数据 2.判断成功或失败 3.对数据进行业务逻辑和功能操作 
+     */
+  </script>
+</body>
+</html>

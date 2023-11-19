@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./promise.js"></script>
+    <title>手写封装Promise</title>
+</head>
+
+<body>
+    <script>
+        let p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve('OK')
+                reject('error')
+                // throw 'error'
+            }, 1000)
+            // resolve('OK')
+        })
+
+        p.then(value => {
+            console.log(value);
+        }, reason => {
+            console.log(reason);
+        })
+
+        // 如果完善then,当promise中是异步任务时
+        // 第一个p.then的回调会保存在实例对象callback中
+        // 第二个p.teen的回调函数也要保存在实例对象的callback中，会覆盖第一个then的回调
+        // 正确做法：应该保存所有的回调函数
+        const result = p.then(value => {
+            alert(value);
+        }, reason => {
+            alert(reason);
+        })
+
+        console.log(result);
+        // console.log(p);
+    </script>
+</body>
+
+</html>

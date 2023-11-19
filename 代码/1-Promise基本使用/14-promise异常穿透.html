@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            resolve('ok')
+            // reject('error')
+        })
+        p.then((value) => {
+            console.log('@1', value);
+            return new Promise(() => { }) // 后面的then不再执行
+        }).then((value) => {
+            console.log('@2', value);
+        }).catch((error) => {
+            console.log(error);
+        })
+
+    </script>
+</body>
+
+</html>

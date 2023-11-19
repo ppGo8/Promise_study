@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function main() {
+            let p = new Promise((resolve, reject) => {
+                resolve('ok')
+                // reject('error')
+
+            })
+            let p2 = new Promise((resolve, reject) => {
+                // resolve('ok')
+                reject('error')
+            })
+            // 1.右侧为promise的情况
+            const res = await p
+            // console.log(res);
+            // 2.右侧为其他类型的数据
+            const res2 = await 20
+            // console.log(res2);
+            // 3.右侧是失败的promise
+            try {
+                const res3 = await p2
+                console.log(p2);
+            } catch (error) {
+                console.log(error);
+            }
+
+        }
+        const resulet = main()
+        // console.log(resulet);
+    </script>
+</body>
+
+</html>

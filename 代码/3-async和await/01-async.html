@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function main() {
+            // 1.返回值是一个非Promise类型的数据，如其他数组类型
+            // return 531
+            // 2.返回值是一个Promise对象
+            return new Promise((resolve, reject) => {
+                resolve('OK')
+            })
+            // return new Promise((resolve, reject) => {
+            //     reject('no')
+            // })
+            // 3.抛出异常,返回对象的状态时reject,结果是异常值
+            // throw 'no'
+        }
+        const result = main()
+        console.log(result);
+    </script>
+</body>
+
+</html>

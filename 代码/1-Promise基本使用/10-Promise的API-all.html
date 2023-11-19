@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let p1 = new Promise((resolve, reject) => {
+      resolve('ok')
+    })
+    let p2 = Promise.resolve('ok2')
+    let p3 = Promise.resolve('ok3')
+    const all = Promise.all([p1,p2,p3])
+    console.log(all)
+    
+    let p4 = new Promise((resolve, reject) => {
+      resolve('ok')
+    })
+    let p5 = Promise.resolve('ok2')
+    let p6 = Promise.reject('ok3')
+    const all2 = Promise.all([p4,p5,p6])
+    console.log(all2)
+  </script>
+</body>
+</html>

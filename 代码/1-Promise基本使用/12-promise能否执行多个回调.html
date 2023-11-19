@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let p = new Promise((resove, reject) => {
+          // 如果此处不使用resolve函数 那么下面的then方法永远不会执行  
+          resove('OK')
+        })
+        // p的状态改变 下面的状态都会执行
+        p.then(value => console.log(value))
+        p.then(value => alert(value))
+    </script>
+
+</body>
+
+</html>

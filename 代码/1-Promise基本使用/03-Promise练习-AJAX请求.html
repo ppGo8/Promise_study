@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise封装AJAX请求</title>
+</head>
+
+<body>
+    <div>
+        <button id="btn">发送ajax请求</button>
+    </div>
+    <script>
+        const btn = document.querySelector('#btn');
+        // 1.回调函数发送请求
+        // btn.addEventListener('click', () => {
+        //   // 1.创建对象
+        //   const xhr = new XMLHttpRequest();
+        //   // 2.初始化
+        //   xhr.open('GET', 'https://api.apiopen.top/getJok');
+        //   // 3.发送
+        //   xhr.send();
+        //   // 4.处理响应结果
+        //   xhr.onreadystatechange = function() {
+        //     if (xhr.readyState === 4) {
+        //       if (xhr.status >=200 && xhr.status < 300) {
+        //         console.info(xhr.status);
+        //         console.info(xhr.response);
+        //       } else {
+        //         console.info(xhr.status);
+        //       }
+        //     }
+        //   }
+        // });
+        // 2.Promise发送请求
+        btn.addEventListener('click', () => {
+          // 创建Promise
+          const p = new Promise((resolve, reject) => {
+            // 1.创建对象
+            const xhr = new XMLHttpRequest();
+            // 2.初始化
+            xhr.open('GET', 'https://api.apiopen.top/getJok');
+            // 3.发送
+            xhr.send();
+            // 4.处理响应结果
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >=200 && xhr.status < 300) {
+                        resolve(xhr.response);
+                    } else {
+                        reject(xhr.status);
+                    }
+                }
+            }  
+        })
+        // promise对象状态发生改变
+        p.then((value) => {
+          console.info('promise');
+          console.info(value);
+        }, (err)=> {
+          console.warn(err);
+        })
+      });
+    </script>
+</body>
+
+</html>
